@@ -9,4 +9,9 @@ public record BikeRoute(
     BikeStation To,
     Length Distance,
     TimeSpan Duration
-    );
+    )
+{
+    public bool IsTooShort() =>
+        Distance.Meters < 10
+        || Duration.TotalSeconds < 10;
+}
