@@ -13,13 +13,12 @@ public static class CsvMapper
          * Departure,Return,Departure station id,Departure station name,Return station id,Return station name,Covered distance (m),Duration (sec.)
          * 2021-05-31T23:57:25,2021-06-01T00:05:46,094,Laajalahden aukio,100,Teljäntie,2043,500
          * */
-        var unknownStation = new BikeStation(0, "UNKNOWN", "", "", "", 0, "", "");
         while (csv.Read())
         {
             var foundDeparture = stationMap.GetValueOrDefault(Convert.ToUInt32(csv.GetInt32(2)))
-                ?? unknownStation;
+                ?? BikeStation.Unknown;
             var foundReturn = stationMap.GetValueOrDefault(Convert.ToUInt32(csv.GetInt32(4)))
-                ?? unknownStation;
+                ?? BikeStation.Unknown;
             var row = new BikeRoute(
                 Departure: csv.GetDateTime(0),
                 Return: csv.GetDateTime(1),

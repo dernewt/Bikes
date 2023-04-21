@@ -9,4 +9,7 @@ public record BikeStation(
     uint Capacity,
     string X, //ETRS-GK25
     string Y //ETRS-GK25
-    );
+    )
+{
+    public static BikeStation Unknown {get;} = new BikeStation(0, "UNKNOWN", "", "", "", 0, "", "");
+}
