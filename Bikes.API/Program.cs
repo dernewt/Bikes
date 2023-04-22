@@ -3,7 +3,7 @@ using UnitsNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<RouteSource>();
+builder.Services.AddSingleton<BikeRouteSource>();
 
 builder.Services.AddSingleton<BikeSources>();
 
