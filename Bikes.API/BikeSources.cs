@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace Bikes.Console;
+﻿namespace Bikes.API;
 
 public record BikeSources(
     string[] TripFiles,

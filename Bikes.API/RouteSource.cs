@@ -1,18 +1,26 @@
 ﻿using Bikes.Core;
-using UnitsNet;
+using Sylvan.Data.Csv;
 
-namespace Bikes.API
+namespace Bikes.API;
+
+public class RouteSource
 {
-    public class RouteSource
+    public RouteSource(BikeSources source)
     {
-        public Task<IEnumerable<BikeRoute>> GetRoutesAsync()
-        {
-            IEnumerable<BikeRoute> routes = new List<BikeRoute>()
-            {
-                new BikeRoute(DateTime.Now, DateTime.Now, BikeStation.Unknown, BikeStation.Unknown, Length.FromMeters(10), TimeSpan.FromSeconds(22))
-            };
+        Source = source;
+    }
 
-            return Task.FromResult(routes);
-        }
+    public BikeSources Source { get; }
+
+    public Task<IEnumerable<BikeRoute>> GetRoutesAsync()
+    {
+        using var stationCsv = CsvDataReader.Create(Source.StationFiles[0]);
+        var stations = stationCsv.GetStations()
+            .ToDictionary(s => s.Id, s => s);
+
+        using var routeCsv = CsvDataReader.Create(Source.TripFiles[0]);
+        IEnumerable<BikeRoute> routes = routeCsv.GetRoutes(stations).Take(20).ToArray();
+
+        return Task.FromResult(routes);
     }
 }

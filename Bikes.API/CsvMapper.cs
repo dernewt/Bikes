@@ -2,7 +2,7 @@
 using Sylvan.Data.Csv;
 using UnitsNet;
 
-namespace Bikes.Console;
+namespace Bikes.API;
 
 public static class CsvMapper
 {

@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<RouteSource>();
 
+builder.Services.AddSingleton<BikeSources>();
+
 builder.Services.AddGraphQLServer()
     .AddType<UnsignedIntType>()
     .BindRuntimeType<Length, FloatType>()
