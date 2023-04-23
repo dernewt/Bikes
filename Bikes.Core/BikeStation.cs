@@ -11,5 +11,5 @@ public record BikeStation(
     string Y //ETRS-GK25
     )
 {
-    public static BikeStation Unknown {get;} = new BikeStation(0, "UNKNOWN", "", "", "", 0, "", "");
+    public static BikeStation Unknown {get;} = new BikeStation(0, "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", 0, "", "");
 }
