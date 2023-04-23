@@ -5,6 +5,7 @@ using Bikes.Core;
 public class Query
 {
     [UsePaging(MaxPageSize = 100)]
+    [UseFiltering]
     public Task<IEnumerable<BikeRoute>> GetAllBikeRoutes([Service] BikeRouteSource rs)
         => rs.GetBikeRoutes();
 

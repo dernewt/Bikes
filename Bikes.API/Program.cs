@@ -9,6 +9,7 @@ builder.Services.AddSingleton<BikeSources>();
 
 builder.Services.AddGraphQLServer()
     .AddType<UnsignedIntType>()
+    .AddFiltering(x => x.AddDefaults().BindRuntimeType<uint, UnsignedIntOperationFilterInputType>())
     .BindRuntimeType<Length, FloatType>()
     .AddTypeConverter<Length, double>(x => x.Meters)
     .AddTypeConverter<double, Length>(x => Length.FromMeters(x))
